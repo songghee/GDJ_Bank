@@ -7,39 +7,44 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.winter.app.util.pager;
+
 //DAO 보내기 전에 전처리, 후처리
 @Service
 public class ProductService {
 	
 	@Autowired
-	private ProductService productDAO;
-	
-	//delete
-	public int delete(ProductDTO productDTO)throws Exception{
-		return productDAO.delete(productDTO);
-	}
-	
-	//update
-	public int update(ProductDTO productDTO)throws Exception{
-		return productDAO.update(productDTO);
-	}
+	private ProductDAO productDAO;
 	
 	//insert
-	public int add(ProductDAO productDTO)throws Exception{
+	public int add(ProductDTO productDTO)throws Exception{
 		return productDAO.add(productDTO);
 	}
 	
-	//detail
-	public ProductDTO getDetail (ProductDTO productDTO)throws Exception{
-		return productDAO.getDetail(productDTO);
-	}
-	
 	//list
-	public List<ProductDTO> getList()throws Exception{
-		List<ProductDTO> ar = this.productDAO.getList();
+	public List<ProductDTO> getList(com.winter.app.util.pager pager)throws Exception{
+		pager.makeRow();
+		List<ProductDTO> ar = this.productDAO.getList(pager);
 		
 		return ar;
 		
 	}
+	
+//	//delete
+//	public int delete(ProductDTO productDTO)throws Exception{
+//		return productDAO.delete(productDTO);
+//	}
+//	
+//	//update
+//	public int update(ProductDTO productDTO)throws Exception{
+//		return productDAO.update(productDTO);
+//	}
+//	
+//	
+//	//detail
+//	public ProductDTO getDetail (ProductDTO productDTO)throws Exception{
+//		return productDAO.getDetail(productDTO);
+//	}
+//	
 
 }
