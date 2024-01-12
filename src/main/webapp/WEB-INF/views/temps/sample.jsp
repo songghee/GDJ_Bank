@@ -9,11 +9,13 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Personal - Start Bootstrap Theme</title>
+        <!-- 주소 수정 필수 -->
         <c:import url="./head_css.jsp"></c:import>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- Navigation-->
+            <!-- 주소 수정 필수 -->
 			<c:import url="./header.jsp"></c:import>
             <!-- Header-->
             <header class="py-5">
@@ -179,6 +181,7 @@
         
         </main>
         <!-- Footer-->
+        <!-- 주소 수정 필수 -->
         <c:import url="./footer.jsp"></c:import>
 
     </body>
