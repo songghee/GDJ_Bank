@@ -9,12 +9,12 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Personal - Start Bootstrap Theme</title>
-        <c:import url="./temps/head_css.jsp"></c:import>
+        <c:import url="./head_css.jsp"></c:import>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- Navigation-->
-			<c:import url="./temps/header.jsp"></c:import>
+			<c:import url="./header.jsp"></c:import>
             <!-- Header-->
             <header class="py-5">
                 <div class="container px-5 pb-5">
@@ -175,9 +175,11 @@
                     </div>
                 </div>
             </section>
+        
+        
         </main>
         <!-- Footer-->
-        <c:import url="./temps/footer.jsp"></c:import>
+        <c:import url="./footer.jsp"></c:import>
 
     </body>
 </html>
