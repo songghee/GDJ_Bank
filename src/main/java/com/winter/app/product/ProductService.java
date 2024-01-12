@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.winter.app.util.pager;
 
 //DAO 보내기 전에 전처리, 후처리
 @Service
@@ -18,11 +17,12 @@ public class ProductService {
 	
 	//insert
 	public int add(ProductDTO productDTO)throws Exception{
+		
 		return productDAO.add(productDTO);
 	}
 	
 	//list
-	public List<ProductDTO> getList(com.winter.app.util.pager pager)throws Exception{
+	public List<ProductDTO> getList(Pager pager)throws Exception{
 		pager.makeRow();
 		List<ProductDTO> ar = this.productDAO.getList(pager);
 		
