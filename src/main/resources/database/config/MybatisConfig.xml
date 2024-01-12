@@ -5,6 +5,6 @@
 
   <configuration>
 	<typeAliases>
-		<typeAlias type="com.winter.app.bank.BankDTO"/>
+		<typeAlias type="com.winter.app."/>
 	</typeAliases>
   </configuration>
