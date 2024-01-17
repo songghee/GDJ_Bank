@@ -46,7 +46,7 @@
                                     
                                     <!-- Message input-->
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" id="productContents" type="text" placeholder="상품 상세 설명" style="height: 10rem" data-sb-validations="required"></textarea>
+                                        <textarea class="form-control" name="productContents" id="message" type="text" placeholder="상품 상세 설명" style="height: 10rem" data-sb-validations="required"></textarea>
                                         <label for="productContents">상품 상세</label>
                                         <div class="invalid-feedback" data-sb-feedback="message:required">상품 내용은 필수입니다.</div>
                                     </div>

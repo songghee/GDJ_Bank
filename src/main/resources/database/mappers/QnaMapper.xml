@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.winter.app.board.qna.QnADAO">
+
+
+	<select id="getDetail" parameterType="">
+	
+	
+	</select>
+	
+
+	<select id="getList" resultType="QnADTO" parameterType="Pager">
+		SELECT * FROM
+  		(SELECT ROWNUM R, N.* FROM
+  			(
+  				SELECT * FROM QNA 
+  			 	
+  				ORDER BY QNAREF DESC, QNASTEP ASC
+  			) 
+  		N)
+  		WHERE R BETWEEN #{startRow} AND #{lastRow}	
+	</select>
+
+  </mapper>

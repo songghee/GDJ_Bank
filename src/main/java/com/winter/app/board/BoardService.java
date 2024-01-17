@@ -2,19 +2,23 @@ package com.winter.app.board;
 
 import java.util.List;
 
+import com.winter.app.util.Pager;
+
 public interface BoardService {
-
-
-	
+		
 	//list
-	public List<BoardDTO> getList()throws Exception;
+	public List<BoardDTO> getList(Pager pager)throws Exception;
 	
 	//detail
-	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception;
+	public BoardDTO getDetail(BoardDTO boardDTO)throws Exception;
 	
 	//add
-	public int setAdd(BoardDTO boardDtO)throws Exception;
+	public int setAdd(BoardDTO boardDTO)throws Exception;
+	
+	//update
+	public int setUpdate(BoardDTO boardDTO)throws Exception;
 	
 	//delete
-	public int setUpdate(BoardDTO boardDtO)throws Exception;
+	public int setDelete(BoardDTO boardDTO)throws Exception;
+
 }

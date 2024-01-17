@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/product/*")
 public class ProductController {
 	
-	@RequestMapping(value="list", method= RequestMethod.GET)
-	public void getList()throws Exception{
-		
-	}
 	
 	@RequestMapping(value="add", method= RequestMethod.GET)
 	public void setAdd()throws Exception{
+		
+	}
+	@RequestMapping(value="list", method= RequestMethod.GET)
+	public void getList()throws Exception{
 		
 	}
 }

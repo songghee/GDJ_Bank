@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.winter.app.board.notice.NoticeDAO">
+  
+  <!-- add -->
+  <insert id="setAdd" parameterType="NoticeDTO">
+  	INSERT INTO NOTICE
+  	(BOARDNUM, BOARDTITLE, BOARDWRITER ,BOARDCONTENS ,BOARDDATE, BOARDVIEWS)
+  	VALUES
+  	(NOTICE_SEQ.NEXTVAL, #{boardTitle}, #{boardWriter}, #{boardContents}, SYSDATE, 0)
+  </insert>
+  
+  	<!-- list -->
+  	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+  		SELECT * FROM
+  		(SELECT ROWNUM R, N.* FROM
+  			(
+  				SELECT * FROM NOTICE 
+  			 	
+  				ORDER BY BOARDNUM DESC
+  			) 
+  		N)
+  		WHERE R BETWEEN #{startRow} AND #{lastRow}	
+  	</select>
+  	
+  	<!-- javaType: property의 타입
+  	ofType: 타입(List) 안에 있는 것 -->
+  	
+  	<resultMap type="NoticeDTO" id="getDetailResult">
+  		<id column="BOARDNUM" property="boardNum"/>
+  		<result column="BOARDTITLE" property="boardTitle"/>
+  		<result column="BOARDCONTENTS" property="boardContents"/>
+  		<result column="BOARDWRITER" property="boardWriter"/>
+  		<result column="BOARDDATE" property="boardDate"/>
+  		<result column="BOARDVIEWS" property="boardViews"/>
+  		<collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
+  			<id property="fileNum" column="FILENUM"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORINAME" property="oriName"/>
+  		</collection>
+  	</resultMap>
+  	
+  	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
+  		SELECT *
+  		FROM NOTICE N
+  			LEFT JOIN
+  			NOTICEFILES NF
+  			USING (BOARDNUM)
+  		WHERE BOARDNUM=#{boardNum}
+  	</select>
+  </mapper>
