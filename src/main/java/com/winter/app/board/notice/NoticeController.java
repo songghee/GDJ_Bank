@@ -1,5 +1,6 @@
 package com.winter.app.board.notice;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.board.BoardDTO;
@@ -62,6 +64,9 @@ public class NoticeController {
 	}
 	@PostMapping("add")
 	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs)throws Exception{
+		MemberDTO memberDTO= (memberDTO)SessionAttribute.getUserName();
+		boardDTO.setBoardWriter(getUserName);
+		
 		int result = boardService.setAdd(boardDTO, attachs);
 		return "redirect:./list";
 	}
