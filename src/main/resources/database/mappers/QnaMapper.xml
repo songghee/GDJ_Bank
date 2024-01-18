@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.winter.app.board.qna.QnaDAO">
+  	<sql id="search">
+  		<where>
+  			<if test="kind == 'kind1'">
+  				BOARDTITLE LIKE '%'||#{search}||'%'
+  			</if>
+  			<if test="kind == 'kind2'">
+  				BOARDCONTENTS LIKE '%'||#{search}||'%'
+  			</if>
+  			<if test="kind == 'kind3'">
+  				BOARDWRITER LIKE '%'||#{search}||'%'
+  			</if>
+  			
+  		</where>
+  	</sql>
+  	
+  	
+  	<!-- file Delete -->
+  	<delete id="setFileDelete" parameterType="BoardDTO">
+  		DELETE QNAFILES WHERE BOARDNUM=#{boardNum}
+  	</delete>
+  	<!-- file List -->
+  	<select id="getFileList" parameterType="BoardDTO" resultType="BoardFileDTO">
+  		SELECT FILENAME FROM QNAFILES WHERE BOARDNUM=#{boardNum}
+  	</select>
+    <!-- reply add -->
+    <insert id="setReplyAdd" parameterType="QnaDTO">
+    	<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
+    		SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+    	</selectKey>
+    	INSERT INTO QNA
+  		(BOARDNUM, BOARDTITLE, BOARDWRITER, BOARDCONTENTS, BOARDDATE, BOARDHIT,
+  		 BOARDREF, BOARDSTEP, BOARDDEPTH, FLAG
+  		)
+  		VALUES
+  		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth}, 0)
+    </insert>
+    
+    
+    
+    <!-- reply step update -->
+    <update id="setReplyUpdate" parameterType="QnaDTO">
+    	UPDATE QNA SET BOARDSTEP=BOARDSTEP+1
+    	WHERE BOARDREF=#{boardRef} AND BOARDSTEP > #{boardStep}
+    </update>
+    
+     <!-- FileAdd -->
+  	<insert id="setFileAdd" parameterType="BoardFileDTO">
+  		INSERT INTO QNAFILES 
+  		(FILENUM, BOARDNUM, FILENAME, ORINAME)
+  		VALUES
+  		(BOARD_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{oriName})
+  	</insert>
+  	 
+  	 
+  	 <update id="setUpdate" parameterType="BoardDTO">
+  		UPDATE QNA 
+  		<set>
+	  		<if test="boardTitle != null and boardTitle !=''">
+	  		BOARDTITLE=#{boardTitle},
+	  		</if>
+	  		<if test="boardContents != null">
+	  		BOARDCONTENTS=#{boardContents}
+	  		</if>
+  		</set>
+  		WHERE BOARDNUM=#{boardNum}
+  	</update>
+    
+    <!-- add -->
+  	<insert id="setAdd" parameterType="BoardDTO">
+  		<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
+  			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO QNA
+  		(BOARDNUM, BOARDTITLE, BOARDWRITER, BOARDCONTENTS, BOARDDATE, BOARDHIT,
+  		 BOARDREF, BOARDSTEP, BOARDDEPTH, FLAG
+  		)
+  		VALUES
+  		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardNum},0,0,0)
+  	</insert>
+  
+  	<update id="setDelete" parameterType="QnaDTO">
+  		UPDATE QNA SET FLAG=#{flag}
+  		WHERE BOARDNUM=#{boardNum}
+  	</update>
+  
+  
+   	<resultMap type="QNADTO" id="getDetailResult">
+  		<id column="BOARDNUM" property="boardNum"/>
+  		<result column="BOARDTITLE" property="boardTitle"/>
+  		<result column="BOARDContents" property="boardContents"/>
+  		<result column="BOARDWriter" property="boardWriter"/>
+  		<result column="BOARDDATE" property="boardDate"/>
+  		<result column="BOARDHIT" property="boardHit"/>
+  		<result column="BOARDREF" property="boardRef"/>
+  		<result column="BOARDSTEP" property="boardStep"/>
+  		<result column="BOARDDEPTH" property="boardDepth"/>
+  		<collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
+  			<id property="fileNum" column="FILENUM"/>
+  			<result property="fileName" column="FILENAME"/>
+  			<result property="oriName" column="ORINAME"/>
+  		</collection>
+  		
+  	</resultMap>
+  	
+  	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult" >
+  		SELECT *
+  		FROM QNA Q
+  			 LEFT JOIN
+  			 QNAFILES QF
+  			 USING (BOARDNUM)
+  		WHERE BOARDNUM=#{boardNum}	  
+  	</select>
+  
+  	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+  		SELECT COUNT(BOARDNUM) FROM QNA
+  		<include refid="search"></include>
+  	</select>
+  
+  	<!-- list -->
+  	<select id="getList" resultType="QnaDTO" parameterType="Pager">
+  		SELECT * FROM
+  		(SELECT ROWNUM R, N.* FROM
+  			(
+  				SELECT * FROM QNA 
+  			 	<include refid="search"></include>
+  				ORDER BY BOARDREF DESC, BOARDSTEP ASC
+  			) 
+  		N)
+  		WHERE R BETWEEN #{startRow} AND #{lastRow}	
+  	</select>
+  </mapper>

@@ -8,20 +8,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Personal - Start Bootstrap Theme</title>
+        <title>Board Add</title>
     <!-- 사용전 경로를 꼭 수정 하세요 -->
-	<c:import url="./head_css.jsp"></c:import>
+	<c:import url="../temps/head_css.jsp"></c:import>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <!-- 사용전 경로를 꼭 수정 하세요 -->
-			<c:import url="./header.jsp"></c:import>
+			<c:import url="../temps/header.jsp"></c:import>
+            <section class="py-5">
+                <div class="text-center mb-5">
+                    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board} Update</span></h1>
+                </div>
+                <c:import url="../temps/boardForm.jsp"></c:import>
+
+            </section>
 
         </main>
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정 하세요 -->
-        <c:import url="./footer.jsp"></c:import>
+        <c:import url="../temps/footer.jsp"></c:import>
 
     </body>
 </html>
