@@ -18,8 +18,9 @@ public class MemberController {
 	
 	@GetMapping("logout")
 	public String getLogout(HttpSession session)throws Exception{
-		//session.removeAttribute(null);
-		// session.setAttribute("member", null);
+//		session.setAttribute("member", null);
+//		session.removeAttribute("member");
+//		session.removeValue("member");
 		session.invalidate();
 		return "redirect:../";
 		 
@@ -35,12 +36,13 @@ public class MemberController {
 		memberDTO = memberService.getLogin(memberDTO);
 		
 		if(memberDTO == null) {
-			model.addAttribute("msg", memberDTO);
+			model.addAttribute("msg", "ID 또는 PW 확인");
+			return "member/login";
 		}
 		
 		session.setAttribute("member", memberDTO);
 		
-		System.out.println("Login : "+memberDTO);
+//		System.out.println("Login : "+memberDTO);
 		return "redirect:../";
 	}
 	
