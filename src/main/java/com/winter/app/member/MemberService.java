@@ -19,9 +19,13 @@ public class MemberService {
 	private ServletContext servletContext;
 	
 	
+	public MemberDTO getDetail(MemberDTO memberDTO)throws Exception{
+		return memberDAO.getDetail(memberDTO);
+	}
+	
 	public int setUpdate(MemberDTO memberDTO)throws Exception{
 		
-		return ;
+		return memberDAO.setUpdate(memberDTO);
 		
 	}
 	
@@ -30,7 +34,7 @@ public class MemberService {
 		
 		if (m != null) {
 			if(m.getPassword().equals(memberDTO.getPassword())){
-				return m;
+				return memberDTO;
 			}else {
 				m=null;
 			}

@@ -22,17 +22,12 @@
                     <form action="./update" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="userName" class="form-label">ID</label>
-                            <input type="text" disabled value="${member.username}" class="form-control" id="userName" name="userName">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">PASSWORD</label>
-                            <input type="password" value="${member.password}" class="form-control" id="password" name="password">
-                        
+                            <input type="text" value="${member.userName}" disabled class="form-control" id="userName" name="userName">
                         </div>
 
                         <div class="mb-3">
                             <label for="name" class="form-label">NAME</label>
-                            <input type="text" value="${member.name}" class="form-control" id="name" name="name">
+                            <input type="text" value="${requestScope.member.name}" class="form-control" id="name" name="name">
                         </div>
 
                         <div class="mb-3">
@@ -54,7 +49,7 @@
                             <input type="file" class="form-control" id="avatar" name="avatar">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Join</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                       </form>
                 </div>
             </div>                    

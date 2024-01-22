@@ -8,22 +8,23 @@
   <update id="setUpdate" parameterType="MemberDTO">
   	UPDATE MEMBER
   		<set>
-  			<if test="name != null AND name name !='' ">
-  				NAME=#{name},
-  			</if>
-  			
-  			<if test="email != null AND email !='' ">
-  				EMAIL=#{email},
-  			</if>
-  			
-  			<if test="phone != null AND phone !='' ">
-  				PHONE=#{phone},
-  			</if>
-  			
-  			<if test="address != null AND address !='' ">
-  				ADDRESS=#{address}
-  			</if>
+  			<if test="name != null and name !=''">
+  					NAME=#{name},
+  				</if>
+  				
+  				<if test="email != null and email !=''">
+  					EMAIL=#{email},
+  				</if>
+  				
+  				<if test="phone != null and phone !=''">
+  					PHONE=#{phone},
+  				</if>
+  				<if test="address != null and address !=''">
+  					ADDRESS=#{address},
+  				</if>
   		</set>
+  		  WHERE USERNAME=#{userName}
+  		
   
   </update>
   
