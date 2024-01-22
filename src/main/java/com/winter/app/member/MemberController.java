@@ -9,12 +9,35 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	
+	@PostMapping("update")
+	public String setUpdate(MemberDTO memberDTO, HttpSession session)throws Exception{
+		//DB에 업데이트 후 mypage로 이동
+
+		MemberDTO m = (MemberDTO)session.getAttribute(null);
+		memberDTO.setUserName(m.getUserName());
+		int result= memberService.setUpdate(memberDTO);
+		
+		return "redirect:../mypage";
+		
+	}
+	
+	@GetMapping("update")
+	public void setUpdate()throws Exception{
+		
+	}
+	
+	@GetMapping("mypage")
+	public void getMypage() throws Exception{
+		
+	}
 	
 	@GetMapping("logout")
 	public String getLogout(HttpSession session)throws Exception{
