@@ -32,25 +32,5 @@ public class ProductService {
 		return productDAO.getDetail(productDTO);
 	}
 
-	@Override
-	public int setAdd(ProductDTO productDTO, MultipartFile [] attachs) throws Exception {
-		int result= productDAO.setAdd(productDTO);
-		
-		return result;
-	}
-
-	@Override
-	public int setUpdate(ProductDTO productDTO, MultipartFile [] attachs) throws Exception {
-		// TODO Auto-generated method stub
-		return productDAO.setUpdate(productDTO);
-	}
-
-	@Override
-	public int setDelete(ProductDTO productDTO) throws Exception {
-
-		return productDAO.setDelete(productDTO);
-	}
-	
-	
 
 }

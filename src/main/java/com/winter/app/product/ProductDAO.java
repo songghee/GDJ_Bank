@@ -19,11 +19,7 @@ public class ProductDAO{
 	
 	private final String NAMESPACE="com.winter.app.product.ProductDAO.";
 
-	@Override
-	public Long getTotalCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pager);
-	}
+
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -42,18 +38,5 @@ public class ProductDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"setAdd", productDTO);
 	}
-
-	@Override
-	public int setUpdate(ProductDTO productDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.update(NAMESPACE+"setUpdate", productDTO);
-	}
-
-	@Override
-	public int setDelete(ProductDTO productDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.update(NAMESPACE+"setDelete", productDTO);
-	}
-	
 
 }

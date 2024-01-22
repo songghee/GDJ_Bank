@@ -30,21 +30,6 @@ public class ProductController {
 		return "redirect:./list";
 	}
 	
-	@GetMapping("update")
-	public String setUpdate(ProductDTO productDTO, Model model)throws Exception{
-		productDTO = productService.getDetail(productDTO);
-		model.addAttribute("productDTO", productDTO);
-		return "product/update";
-	}
-	
-	@PostMapping("update")
-	public String setUpdate(ProductDTO productDTO, MultipartFile[] attachs)throws Exception{
-		int result = productService.setUpdate(productDTO, attachs);
-		return "redirect:./list";
-	}
-	
-	
-	
 	
 	@GetMapping("detail")
 	public String getDetail(ProductDTO productDTO, Model model)throws Exception{
