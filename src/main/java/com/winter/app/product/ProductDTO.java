@@ -1,9 +1,7 @@
 package com.winter.app.product;
 
-import java.util.List;
 
 import com.winter.app.board.BoardDTO;
-import com.winter.app.board.BoardFileDTO;
 
 public class ProductDTO extends BoardDTO {
 	

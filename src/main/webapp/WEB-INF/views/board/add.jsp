@@ -17,6 +17,7 @@
             <!-- Navigation-->
             <!-- 사용전 경로를 꼭 수정 하세요 -->
 			<c:import url="../temps/header.jsp"></c:import>
+			<c:import url="../temps/boardForm.jsp"></c:import>
             <section class="py-5">
                 <div class="text-center mb-5">
                     <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">BoardAdd</span></h1>
@@ -29,7 +30,9 @@
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정 하세요 -->
         <c:import url="../temps/footer.jsp"></c:import>
-
+		<script type="text/javascript">
+			$("#contents").summernote();
+		</script>
     </body>
 </html>
     

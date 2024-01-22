@@ -15,12 +15,11 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 
-
 	@Override
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		pager.makeRow();
-		Long totalCount = productDAO.getTotalCount(pager);
+		Long totalCount = productDAO.totalCount(pager);
 		pager.makeNum(totalCount);
 		
 		return productDAO.getList(pager);

@@ -33,10 +33,5 @@ public class ProductDAO{
 		return sqlSession.selectOne(NAMESPACE+"getDetail", productDTO);
 	}
 
-	@Override
-	public int setAdd(ProductDTO productDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.insert(NAMESPACE+"setAdd", productDTO);
-	}
 
 }

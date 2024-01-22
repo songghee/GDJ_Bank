@@ -3,9 +3,11 @@ package com.winter.app.interceptors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+@Component
 public class TestInterceptor extends HandlerInterceptorAdapter{
 	
 	//DS -> controller 진입 전 

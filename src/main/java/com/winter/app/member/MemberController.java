@@ -76,6 +76,11 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
+	@GetMapping("agreement")
+	public void setAgreement()throws Exception{
+		
+	}
+	
 	@GetMapping("join")
 	public void setJoin()throws Exception{
 		
