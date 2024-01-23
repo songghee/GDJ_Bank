@@ -11,13 +11,14 @@
         <title>Board Add</title>
     <!-- 사용전 경로를 꼭 수정 하세요 -->
 	<c:import url="../temps/head_css.jsp"></c:import>
+    <c:import url="../temps/summernote.jsp"></c:import>
+
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <!-- 사용전 경로를 꼭 수정 하세요 -->
 			<c:import url="../temps/header.jsp"></c:import>
-			<c:import url="../temps/boardForm.jsp"></c:import>
             <section class="py-5">
                 <div class="text-center mb-5">
                     <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">BoardAdd</span></h1>

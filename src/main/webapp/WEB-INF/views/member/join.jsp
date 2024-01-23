@@ -29,6 +29,14 @@
                             <input type="password" class="form-control" id="password" name="password">
                         
                         </div>
+                        <div id="passwordResult"></div>
+
+                        <div class="mb-3">
+                            <label for="passwordCheck" class="form-label">PASSWORD</label>
+                            <input type="password" class="form-control" id="passwordCheck">
+                        
+                        </div>
+                        <div id="passwordCheckResult"></div>
 
                         <div class="mb-3">
                             <label for="name" class="form-label">NAME</label>
@@ -62,7 +70,7 @@
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정 하세요 -->
         <c:import url="../temps/footer.jsp"></c:import>
-
+        <script src="../resources/js/member/joinCheck.js"></script>
     </body>
 </html>
     

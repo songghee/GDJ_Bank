@@ -21,17 +21,18 @@ public class ProductDAO{
 
 
 
-	@Override
-	public List<BoardDTO> getList(Pager pager) throws Exception {
+	public List<ProductDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getList", pager);
 	}
 
-	@Override
-	public BoardDTO getDetail(ProductDTO productDTO) throws Exception {
+	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getDetail", productDTO);
 	}
-
+	
+	public Long getTotal(Pager pager) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getTotal", pager);
+	}
 
 }
